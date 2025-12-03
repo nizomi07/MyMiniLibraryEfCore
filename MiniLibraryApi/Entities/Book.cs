@@ -9,4 +9,6 @@ public class Book : BaseEntity
     public Author? Author { get; set; }
     
     public DateTime?  PublishDate { get; set; }
+    
+    public ICollection<OrderBook> OrderBooks { get; set; } = new List<OrderBook>();
 }
