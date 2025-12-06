@@ -9,7 +9,7 @@ namespace MiniLibraryApi.Controllers;
 public class OrderBookController(IOrderBookService service) : ControllerBase
 {
     [HttpPost]
-    public async Task<ActionResult<OrderBook>> AddOrderBookAsync([FromForm] OrderBook orderBook)
+    public async Task<ActionResult<OrderBook>> AddOrderBookAsync([FromBody] OrderBook orderBook)
     {
         var createdOrderBook = await service.AddOrderBookAsync(orderBook);
         return Ok(createdOrderBook);
@@ -23,7 +23,7 @@ public class OrderBookController(IOrderBookService service) : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<OrderBook>> UpdateOrderBookAsync([FromForm] OrderBook orderBook)
+    public async Task<ActionResult<OrderBook>> UpdateOrderBookAsync([FromBody] OrderBook orderBook)
     {
         var updatedOrderBook = await service.UpdateOrderBookAsync(orderBook);
         return Ok(updatedOrderBook);

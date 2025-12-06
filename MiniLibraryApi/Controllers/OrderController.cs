@@ -9,7 +9,7 @@ namespace MiniLibraryApi.Controllers;
 public class OrderController(IOrderService service) : ControllerBase
 {
     [HttpPost]
-    public async Task<ActionResult<Order>> AddOrderAsync([FromForm] Order order)
+    public async Task<ActionResult<Order>> AddOrderAsync([FromBody] Order order)
     {
         var createdOrder = await service.AddOrderAsync(order);
         return Ok(createdOrder);
@@ -23,7 +23,7 @@ public class OrderController(IOrderService service) : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<Order>> UpdateOrderAsync([FromForm] Order order)
+    public async Task<ActionResult<Order>> UpdateOrderAsync([FromBody] Order order)
     {
         var updatedOrder = await service.UpdateOrderAsync(order);
         return Ok(updatedOrder);

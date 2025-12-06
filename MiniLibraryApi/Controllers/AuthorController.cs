@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MiniLibraryApi.DTOs;
 using MiniLibraryApi.Entities;
 using MiniLibraryApi.Services;
 
@@ -9,9 +10,9 @@ namespace MiniLibraryApi.Controllers;
 public class AuthorController(IAuthorService service) : ControllerBase
 {
     [HttpPost]
-    public async Task<ActionResult<Author>> AddAuthorAsync([FromForm] Author author)
+    public async Task<ActionResult<Author>> AddAuthorAsync([FromBody] AddAuthorDto authorDto)
     {
-        var createdAuthor = await service.AddAuthorAsync(author);
+        var createdAuthor = await service.AddAuthorAsync(authorDto);
         return Ok(createdAuthor);
     }
 
@@ -23,9 +24,9 @@ public class AuthorController(IAuthorService service) : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<Author>> UpdateAuthorAsync([FromForm] Author author)
+    public async Task<ActionResult<Author>> UpdateAuthorAsync([FromBody] UpdateAuthorDto authorDto)
     {
-        var updatedAuthor = await service.UpdateAuthorAsync(author);
+        var updatedAuthor = await service.UpdateAuthorAsync(authorDto);
         return Ok(updatedAuthor);
     }
 

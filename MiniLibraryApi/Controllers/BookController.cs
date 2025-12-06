@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MiniLibraryApi.DTOs;
 using MiniLibraryApi.Entities;
 using MiniLibraryApi.Services;
 
@@ -9,9 +10,9 @@ namespace MiniLibraryApi.Controllers;
 public class BookController(IBookService service) : ControllerBase
 {
     [HttpPost]
-    public async Task<ActionResult<Book>> AddBookAsync([FromForm] Book book)
+    public async Task<ActionResult<Book>> AddBookAsync([FromBody] AddBookDto bookDto)
     {
-        var createdBook = await service.AddBookAsync(book);
+        var createdBook = await service.AddBookAsync(bookDto);
         return Ok(createdBook);
     }
 
@@ -23,7 +24,7 @@ public class BookController(IBookService service) : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<Book>> UpdateBookAsync([FromForm] Book book)
+    public async Task<ActionResult<Book>> UpdateBookAsync([FromBody] Book book)
     {
         var updatedBook = await service.UpdateBookAsync(book);
         return Ok(updatedBook);
