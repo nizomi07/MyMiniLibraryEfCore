@@ -1,12 +1,13 @@
 using MiniLibraryApi.DTOs;
 using MiniLibraryApi.Entities;
+using MiniLibraryApi.Responses;
 
 namespace MiniLibraryApi.Services;
 
 public interface IAuthorService
 {
-    Task<Author> AddAuthorAsync(AddAuthorDto authorDto);
+    Task<Response<Author>> AddAuthorAsync(AddAuthorDto authorDto);
     Task<IEnumerable<Author>> GetAuthorsAsync();
-    Task<Author> UpdateAuthorAsync(UpdateAuthorDto authorDto);
+    Task<Response<Author>> UpdateAuthorAsync(UpdateAuthorDto authorDto);
     Task DeleteAuthorAsync(long id);
 }
