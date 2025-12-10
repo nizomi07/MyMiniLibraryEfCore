@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniLibraryApi.Entities;
+using MiniLibraryApi.Filters;
 using MiniLibraryApi.Services;
 
 namespace MiniLibraryApi.Controllers;
@@ -16,9 +17,9 @@ public class OrderController(IOrderService service) : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Order>>> GetAllOrdersAsync()
+    public async Task<ActionResult<IEnumerable<Order>>> GetAllOrdersAsync(OrderFilter filter)
     {
-        var categories = await service.GetOrdersAsync();
+        var categories = await service.GetOrdersAsync(filter);
         return Ok(categories);
     }
 

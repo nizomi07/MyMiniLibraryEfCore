@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniLibraryApi.DTOs;
 using MiniLibraryApi.Entities;
+using MiniLibraryApi.Filters;
 using MiniLibraryApi.Services;
 
 namespace MiniLibraryApi.Controllers;
@@ -17,9 +18,9 @@ public class BookController(IBookService service) : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Book>>> GetAllBooksAsync()
+    public async Task<ActionResult<IEnumerable<Book>>> GetAllBooksAsync(BookFilter filter)
     {
-        var categories = await service.GetBooksAsync();
+        var categories = await service.GetBooksAsync(filter);
         return Ok(categories);
     }
 

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniLibraryApi.DTOs;
 using MiniLibraryApi.Entities;
+using MiniLibraryApi.Filters;
 using MiniLibraryApi.Services;
 
 namespace MiniLibraryApi.Controllers;
@@ -17,9 +18,9 @@ public class AuthorController(IAuthorService service) : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Author>>> GetAllAuthorsAsync()
+    public async Task<ActionResult<IEnumerable<Author>>> GetAllAuthorsAsync(AuthorFilter filter)
     {
-        var categories = await service.GetAuthorsAsync();
+        var categories = await service.GetAuthorsAsync(filter);
         return Ok(categories);
     }
 
